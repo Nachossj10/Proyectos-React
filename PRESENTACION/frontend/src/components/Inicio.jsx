@@ -1,4 +1,5 @@
 import React from 'react';
+import Proyecto from './Proyecto'
 import '../styles/Inicio.css';
 import perfilImage from '../assets/perfil.jpg';
 import { Tecnologia } from './Tecnologia';
@@ -35,6 +36,7 @@ function Inicio() {
       </div>
       <AcercaDeMi />
       <Tecnologia />
+      <Proyecto />
     </div>
     
   )

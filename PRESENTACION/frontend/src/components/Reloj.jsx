@@ -14,8 +14,8 @@ function Reloj() {
 
   return (
     <div className="reloj">
-      <h3>{fechaHora.toLocaleDateString("es-AR")}</h3>
-      <h2>{fechaHora.toLocaleTimeString("es-AR")}</h2>
+      <h2>{fechaHora.toLocaleDateString("es-AR")}</h2>
+      <h2>{fechaHora.toLocaleTimeString("es-AR", { hour12: false })}</h2>
     </div>
   );
 }

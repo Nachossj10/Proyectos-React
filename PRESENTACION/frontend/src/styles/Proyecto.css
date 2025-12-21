@@ -1,0 +1,25 @@
+.custom-btn {
+  background-color: rgba(48, 173, 96, 0.877) !important;
+  color: #fff !important;
+  border-radius: 12px;
+}
+
+.card .mini-card {
+  height: auto;
+  width: 100%;
+  max-width: 24rem;
+  
+}
+
+.card .mini-card img {
+  height: 200px;
+  width: 100%;
+  object-fit: cover;
+  padding: 10px;
+}
+
+@media (max-width: 768px) {
+  .card .mini-card {
+    max-width: 100%;
+  }
+}
