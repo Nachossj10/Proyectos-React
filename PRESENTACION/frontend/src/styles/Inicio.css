@@ -30,7 +30,7 @@
   padding: 1rem;
   box-sizing: border-box;
 
-  /* Glassmorphism - Con !important para anular Bootstrap */
+  /* Glassmorphism */
   background: rgba(251, 237, 237, 0.66) !important;
   backdrop-filter: blur(12px) brightness(1.1);
   -webkit-backdrop-filter: blur(12px) brightness(1.1);
@@ -56,7 +56,7 @@
 .card:hover {
   background: #ffffff !important;
 
-  /* Eliminar efecto vidrio */
+  
   backdrop-filter: none;
   -webkit-backdrop-filter: none;
 
@@ -68,7 +68,7 @@
   transform: translateY(-3px);
 }
 
-/* Asegura que la clase de Bootstrap `card-img-top` no estire la imagen */
+
 .card .perfil-foto.card-img-top {
   width: 150px;
   height: 150px;

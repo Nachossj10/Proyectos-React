@@ -1,0 +1,17 @@
+.reloj {
+  text-align: center;
+  font-family: monospace;
+  color: bisque;
+}
+
+.reloj h2 {
+  font-size: 2rem;
+  letter-spacing: 2px;
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0% { opacity: 0.6; }
+  50% { opacity: 1; }
+  100% { opacity: 0.6; }
+}

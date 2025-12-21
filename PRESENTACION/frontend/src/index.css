@@ -29,30 +29,30 @@ body {
   min-height: 100vh;
 }
 
-/* Fondo borroso y fijo usando un pseudo-elemento para evitar huecos al scrollear */
+
 html, body {
   height: 100%;
 }
 
 body {
-  position: relative; /* para que el ::before se posicione respecto al viewport */
+  position: relative;
 }
 
 body::before {
   content: "";
-  position: fixed; /* se mantiene estático mientras se hace scroll */
-  inset: 0; /* top:0; right:0; bottom:0; left:0; */
+  position: fixed;
+  inset: 0; 
   background-image: url("./assets/background.png");
   background-repeat: no-repeat;
   background-position: center top;
-  background-size: cover; /* cubre toda la pantalla sin dejar huecos */
+  background-size: cover;
   filter: blur(8px) saturate(1.05);
-  transform: scale(1.03); /* evita bordes transparentes al aplicar blur */
-  z-index: -1; /* queda por detrás del contenido */
+  transform: scale(1.03);
+  z-index: -1; 
   pointer-events: none;
 }
 
-/* Si quieres un efecto de overlay oscuro para mejorar contraste */
+
 body::after {
   content: "";
   position: fixed;

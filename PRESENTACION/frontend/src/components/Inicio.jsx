@@ -8,9 +8,9 @@ function AcercaDeMi() {
     <div className='card my-4'>
       <h1>Acerca De Mi</h1>
       <div className="card-body">
-        <p>Mi nombre es Juan Ignacio Vaca, tengo 22 años, actualmente soy estudiante de tercer año de ingeniería en sistemas de información. Tengo conocimientos básicos sobre programación full-stack de desarrollo web y administración de bases de datos, con buena predisposición para el aprendizaje
+        <p>Mi nombre es Juan Ignacio Vaca, tengo 22 años, actualmente soy estudiante de tercer año de ingeniería en sistemas de información. Tengo conocimientos básicos sobre programación full-stack de desarrollo web y administración de bases de datos, con buena predisposición para el aprendizaje. <br />
 
-Aunque aún no cuento con experiencia laboral formal, me motiva seguir desarrollando mis habilidades técnicas y aprovechar cada oportunidad que me permita crecer profesionalmente.
+Aunque aún no cuento con experiencia laboral formal, me motiva seguir desarrollando mis habilidades técnicas y aprovechar cada oportunidad que me permita crecer profesionalmente. <br />
 
 Soy una persona curiosa, responsable y orientada al detalle, lo que me impulsa a resolver problemas de manera lógica y eficiente. 
 Mi objetivo es incorporarme a un entorno donde pueda aportar compromiso y dedicación, al mismo tiempo que adquiero experiencia práctica en el área de tecnología y desarrollo de software.

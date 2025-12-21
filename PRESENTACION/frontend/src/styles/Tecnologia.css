@@ -1,20 +1,20 @@
-/* Grid / row for technology icons */
+
 .tech-row {
   display: flex;
-  flex-wrap: wrap; /* permite que baje a otra línea en pantallas pequeñas */
+  flex-wrap: wrap;
   gap: 1rem;
-  justify-content: center; /* alinea horizontalmente */
+  justify-content: center;
   align-items: center;
   margin-top: 1rem;
 }
 
-/* Imágenes uniformes */
+
 .tech-img {
   width: 96px;
   height: 96px;
   max-width: 96px;
   max-height: 96px;
-  object-fit: contain; /* mantiene proporción sin recortar */
+  object-fit: contain;
   display: block;
   transition: transform 0.7s cubic-bezier(.2,.9,.2,1);
   transform-origin: center center;
@@ -24,19 +24,19 @@
   backface-visibility: hidden;
 }
 
-/* Efecto hover: rotación completa de 360° */
+
 .tech-img:hover,
 .tech-img:focus {
   transform: rotate(360deg);
 }
 
-/* Accesibilidad: focus visible para navegación por teclado */
+
 .tech-img:focus {
   outline: 3px solid rgba(30,144,255,0.15);
   outline-offset: 4px;
 }
 
-/* En pantallas muy pequeñas reduce el tamaño */
+
 @media (max-width: 420px) {
   .tech-img {
     width: 72px;
