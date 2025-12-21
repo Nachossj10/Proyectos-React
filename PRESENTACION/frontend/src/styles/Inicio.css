@@ -1,0 +1,81 @@
+.inicio-container {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 100%;
+}
+
+
+.perfil-foto {
+  width: 150px;
+  height: 150px;
+  max-width: 150px;
+  max-height: 150px;
+  border-radius: 50%;
+  border: 4px solid rgb(184, 224, 237);
+  object-fit: cover;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.70);
+  margin: 0 0 20px 0;
+  display: block;
+  align-self: center;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 70rem;
+  max-width: 95%;
+  margin: 20px auto;
+  padding: 1rem;
+  box-sizing: border-box;
+
+  /* Glassmorphism - Con !important para anular Bootstrap */
+  background: rgba(251, 237, 237, 0.66) !important;
+  backdrop-filter: blur(12px) brightness(1.1);
+  -webkit-backdrop-filter: blur(12px) brightness(1.1);
+
+  border-radius: 20px;
+  border: 1.5px solid rgba(255, 255, 255, 0.4) !important;
+
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.15),
+    inset 0 0 20px rgba(255, 255, 255, 0.1) !important;
+
+  transition:
+    background 0.3s ease,
+    box-shadow 0.3s ease,
+    transform 0.3s ease,
+    backdrop-filter 0.3s ease;
+
+  transform: translateZ(0);
+  will-change: transform;
+  color: inherit !important;
+}
+
+.card:hover {
+  background: #ffffff !important;
+
+  /* Eliminar efecto vidrio */
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+
+  border: 1.5px solid rgba(0, 0, 0, 0.08) !important;
+
+  box-shadow:
+    0 12px 40px rgba(0, 0, 0, 0.25) !important;
+
+  transform: translateY(-3px);
+}
+
+/* Asegura que la clase de Bootstrap `card-img-top` no estire la imagen */
+.card .perfil-foto.card-img-top {
+  width: 150px;
+  height: 150px;
+  max-width: 150px;
+  max-height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 12px auto;
+  display: block;
+}
