@@ -17,6 +17,16 @@ class GestorCampo:
 class PantAdmCampo:
   def __init__(self):
     self.gestor = None
+    self.comboTiposSuelo = None
+    self.grillaLote = None
+    self.lblNombreCampo = None
+    self.NroLote = None
+    self.lblSuperficieCampo = None
+    self.lblSuperficieLote = None
+    self.txtNombreCampo = None
+    self.txtNroLote = None
+    self.txtSupCampo = None
+    self.txtTipoSuelo = None
 
   def opcionRegCampo(self):
     print("***Habilitando ventana para el registro de un campo***")
@@ -26,3 +36,6 @@ class PantAdmCampo:
 
   def pedirNombreCampo(self):
     print("Notificando a la pantalla...")
+  
+  def habilitarVentana(self):
+    pass

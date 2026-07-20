@@ -1,43 +1,29 @@
 inicio-container {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
   align-items: center;
-  height: 100vh;
-  width: 100vw;
+  min-height: 100vh;
+  width: 100%;
   overflow: hidden;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: #ffffff;
-  /* Fondo base oscuro para que resalte la animación circular */
-  background-color: #0b1a10; 
+  background-color:aliceblue;
+  isolation: isolate;
 }
 
-/* El fondo animado circular */
-.inicio-container::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  /* Gradiente radial que simula esferas de luz orgánica (campo/naturaleza) */
-  background: radial-gradient(circle at 30% 30%, #1e4620 0%, transparent 40%),
-              radial-gradient(circle at 70% 70%, #2d5a27 0%, transparent 45%),
-              radial-gradient(circle at 50% 50%, #0f301b 0%, #0b1a10 70%);
-  z-index: 1;
-  /* Aplicamos la animación de rotación circular */
-  animation: rotacionCircular 20s linear infinite;
-}
-
-/* Animación de rotación para que las luces giren en círculos */
-@keyframes rotacionCircular {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
+.inicio-content:hover {
+  position: relative;
+  z-index: 2; /* Por encima del fondo animado */
+  text-align: center;
+  background: rgba(255, 255, 255, 0.07);
+  padding: 3rem 4rem;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+  max-width: 500px;
+  background: linear-gradient(135deg, #add2d5f9 0%, #97d6cb 100%);
 }
 
 /* Contenido de texto (Caja flotante profesional) */
@@ -46,13 +32,12 @@ inicio-container {
   z-index: 2; /* Por encima del fondo animado */
   text-align: center;
   background: rgba(255, 255, 255, 0.07);
-  backdrop-filter: blur(12px); /* Efecto vidrio esmerilado (Glassmorphism) */
-  -webkit-backdrop-filter: blur(12px);
   padding: 3rem 4rem;
   border-radius: 16px;
   border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
   max-width: 500px;
+  background: linear-gradient(135deg, #f95353b9 0%, #cf6d6d 100%);
 }
 
 /* Estilos de los textos */
@@ -61,13 +46,11 @@ inicio-container {
   margin-bottom: 1rem;
   font-weight: 700;
   letter-spacing: -0.5px;
-  background: linear-gradient(135deg, #ffffff 0%, #a2e8dd 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  
 }
 
 .inicio-content p {
   font-size: 1.1rem;
-  color: #ccd7d2;
+  color: #f6f5f5;
   line-height: 1.6;
 }
