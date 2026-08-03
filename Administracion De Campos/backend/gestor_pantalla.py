@@ -5,15 +5,16 @@ from lote import Lote
 from tipoSuelo import TipoSuelo
 
 class GestorCampo:
-  def __init__(self, pant, campos):
+  def __init__(self, pant, campos, tipoS):
     self.pantalla = pant
     self.nombreCampo = None
     self.numeroLote= None
     self.supCampo = None
     self.supLotes = None 
-    self.tiposSuelo = None
+    self.tiposSuelo = []
     self.tipoSueloElegido = None
     self.campos = campos
+    self.tipoSuelo = tipoS
 
 
     self.pedirNombreCampo()
@@ -46,6 +47,14 @@ class GestorCampo:
   def tomarSuperficieCampo(self, superficie):
      self.supCampo = superficie
      print("Superficie recibida: " + self.supCampo)
+    
+  def buscarTiposSuelo(self):
+    for tipo in self.tipoSuelo:
+      nombre = tipo.getNombre()
+      self.tiposSuelo.append(nombre)
+    self.pantalla.pedirDatosLote(self.tiposSuelo)
+
+
     
     
 
@@ -85,7 +94,7 @@ class PantAdmCampo:
         print("***Habilitando ventana para el registro de un campo***")
 
         self.habilitarVentana()
-        self.gestor = GestorCampo(self, [campo1, campo2, campo3])
+        self.gestor = GestorCampo(self, [campo1, campo2, campo3], [ts1, ts2])
 
     def habilitarVentana(self):
       print("[Pantalla] Ocultando ventana principal y creando la ventana de registro...")

@@ -3,3 +3,6 @@ class TipoSuelo:
     self.descripcion = desc
     self.nombre = nom
     self.numero = num
+
+  def getNombre(self):
+    return self.nombre
