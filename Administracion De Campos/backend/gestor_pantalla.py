@@ -48,6 +48,7 @@ class GestorCampo:
   def tomarSuperficieCampo(self, supCampo):
      self.supCampo = supCampo
      print("Superficie recibida: " + self.supCampo)
+     self.buscarTiposSuelo()
     
   def buscarTiposSuelo(self):
     for tipo in self.tipoSuelo:
@@ -61,6 +62,10 @@ class GestorCampo:
   def tomarSupLote(self, supLote):
     self.supLote = supLote
     print("Superficie del lote recibida: " + self.supLote)
+
+  def tomarNumeroLote(self, numLot):
+    self.numeroLote = numLot
+    self.pantalla.pedirSupLote()
     
 
     
@@ -251,12 +256,12 @@ class PantAdmCampo:
         self.btn_siguiente_lote.pack(side="left")
 
     def tomarNumeroLote(self):
-        numero_lote = self.entry_numero_lote.get().strip()
-        if numero_lote == "":
+        numeroLote = self.entry_numero_lote.get().strip()
+        if numeroLote == "":
             print("Debe ingresar el número del lote.")
             return
-        print(f"[Pantalla] Número de lote ingresado: {numero_lote}")
-        self.gestor.numeroLote = int(numero_lote)
+        print(f"[Pantalla] Número de lote ingresado: {numeroLote}")
+        self.gestor.tomarNumeroLote(numeroLote)
         
     def pedirSupLote(self):
       # Ocultamos los controles del nombre
@@ -294,7 +299,7 @@ class PantAdmCampo:
       if getattr(self, "btn_confirmar_superLote", None) is not None and self.btn_confirmar_superLote.winfo_exists():
           self.btn_confirmar_superLote.config(state="disabled")
 
-         
+
 
 
 if __name__ == "__main__":
