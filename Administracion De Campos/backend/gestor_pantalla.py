@@ -10,7 +10,8 @@ class GestorCampo:
     self.nombreCampo = None
     self.numeroLote= None
     self.supCampo = None
-    self.supLotes = None 
+    self.supLote = None
+    self.lotes = []
     self.tiposSuelo = []
     self.tipoSueloElegido = None
     self.campos = campos
@@ -44,8 +45,8 @@ class GestorCampo:
   def pedirSuperficieCampo(self):
     self.pantalla.pedirSuperficieCampo()
 
-  def tomarSuperficieCampo(self, superficie):
-     self.supCampo = superficie
+  def tomarSuperficieCampo(self, supCampo):
+     self.supCampo = supCampo
      print("Superficie recibida: " + self.supCampo)
     
   def buscarTiposSuelo(self):
@@ -54,8 +55,14 @@ class GestorCampo:
       self.tiposSuelo.append(nombre)
     self.pantalla.pedirDatosLote(self.tiposSuelo)
 
+  def pedirSupLote(self):
+    self.pantalla.pedirSupLote()
 
+  def tomarSupLote(self, supLote):
+    self.supLote = supLote
+    print("Superficie del lote recibida: " + self.supLote)
     
+
     
 
 class PantAdmCampo:
@@ -205,6 +212,44 @@ class PantAdmCampo:
           self.entry_superficie.config(state="disabled")
       if getattr(self, "btn_confirmar_superficie", None) is not None and self.btn_confirmar_superficie.winfo_exists():
           self.btn_confirmar_superficie.config(state="disabled")
+
+    def pedirSupLote(self):
+      # Ocultamos los controles del nombre
+      self.lbl_nombre.destroy()
+      self.entry_nombre.destroy()
+      self.btn_confirmar.destroy()
+
+      # Creamos los nuevos controles
+
+      self.lbl_superLote = tk.Label(
+          self.ventana_registro,
+          text="Superficie del Lote (ha):"
+      )
+      self.lbl_superLote.pack(pady=5)
+
+      self.entry_supLote = tk.Entry(
+          self.ventana_registro,
+          width=20
+      )
+      self.entry_supLote.pack()
+
+      self.btn_confirmar_superLote = tk.Button(
+          self.ventana_registro,
+          text="Aceptar",
+          command=self.tomarSupeLote
+      )
+      self.btn_confirmar_superLote.pack(pady=15)
+
+    def tomarSupLote(self):
+      supLote = self.entry_supLote.get().strip()
+      self.gestor.tomarSupLote(supLote)
+  
+      if getattr(self, "entry_supLote", None) is not None and self.entry_supLote.winfo_exists():
+          self.entry_supLote.config(state="disabled")
+      if getattr(self, "btn_confirmar_superLote", None) is not None and self.btn_confirmar_superLote.winfo_exists():
+          self.btn_confirmar_superLote.config(state="disabled")
+
+         
 
 
 if __name__ == "__main__":
