@@ -79,7 +79,6 @@ class PantAdmCampo:
         self.txtNombreCampo = None
         self.txtNroLote = None
         self.txtSupCampo = None
-        self.txtTipoSuelo = None
 
     def opcionRegCampo(self):
         print("***Habilitando ventana para el registro de un campo***")
