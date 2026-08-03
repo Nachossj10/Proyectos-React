@@ -205,6 +205,52 @@ class PantAdmCampo:
       if getattr(self, "btn_confirmar_superficie", None) is not None and self.btn_confirmar_superficie.winfo_exists():
           self.btn_confirmar_superficie.config(state="disabled")
 
+    def pedirDatosLote(self, nomTS):
+        # Limpiamos los controles anteriores si existen
+        if getattr(self, "lbl_superficie", None) is not None and self.lbl_superficie.winfo_exists():
+            self.lbl_superficie.destroy()
+        if getattr(self, "entry_superficie", None) is not None and self.entry_superficie.winfo_exists():
+            self.entry_superficie.destroy()
+        if getattr(self, "btn_confirmar_superficie", None) is not None and self.btn_confirmar_superficie.winfo_exists():
+            self.btn_confirmar_superficie.destroy()
+
+        self.lbl_numero_lote = tk.Label(
+            self.ventana_registro,
+            text="Ingrese el número del lote:"
+        )
+        self.lbl_numero_lote.pack(pady=(10, 5))
+
+        frame_lote = tk.Frame(self.ventana_registro)
+        frame_lote.pack(pady=5)
+
+        def validar_numero(text):
+            return text.isdigit() or text == ""
+
+        vcmd = (self.ventana_registro.register(validar_numero), "%P")
+
+        self.entry_numero_lote = tk.Entry(
+            frame_lote,
+            width=15,
+            validate="key",
+            validatecommand=vcmd
+        )
+        self.entry_numero_lote.pack(side="left", padx=(0, 10))
+
+        self.btn_siguiente_lote = tk.Button(
+            frame_lote,
+            text="Siguiente",
+            command=self.tomarNumeroLote
+        )
+        self.btn_siguiente_lote.pack(side="left")
+
+    def tomarNumeroLote(self):
+        numero_lote = self.entry_numero_lote.get().strip()
+        if numero_lote == "":
+            print("Debe ingresar el número del lote.")
+            return
+        print(f"[Pantalla] Número de lote ingresado: {numero_lote}")
+        self.gestor.numeroLote = int(numero_lote)
+
 
 if __name__ == "__main__":
 
