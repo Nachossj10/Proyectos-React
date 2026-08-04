@@ -1,5 +1,5 @@
 import tkinter as tk
-import time
+from tkinter import ttk
 from campo import Campo
 from lote import Lote
 from tipoSuelo import TipoSuelo
@@ -299,6 +299,34 @@ class PantAdmCampo:
       if getattr(self, "btn_confirmar_superLote", None) is not None and self.btn_confirmar_superLote.winfo_exists():
           self.btn_confirmar_superLote.config(state="disabled")
 
+    def visualizarTiposSuelo(self, tiposSuelo):
+      columnas = ("descripcion", "nombre", "numero")
+
+      # 2. Crear el widget Treeview
+      # show="headings" oculta la columna jerárquica por defecto que usa Tkinter
+      tabla = ttk.Treeview(self.ventana_registro, columns=columnas, show="headings")
+
+      # 3. Configurar los encabezados (texto que se muestra arriba)
+      tabla.heading("legajo", text="Legajo")
+      tabla.heading("nombre", text="Nombre")
+      tabla.heading("apellido", text="Apellido")
+
+      # 4. Ajustar el ancho y alineación de las columnas
+      tabla.column("legajo", width=100, anchor="center")
+      tabla.column("nombre", width=180, anchor="w")
+      tabla.column("apellido", width=180, anchor="w")
+      
+      # Insertar filas de datos
+      for suelo in tiposSuelo:
+          tabla.insert("", tk.END, values=suelo)
+
+      # 6. Agregar una barra de desplazamiento vertical (Scrollbar)
+      scrollbar = ttk.Scrollbar(self.ventana_registro, orient="vertical", command=tabla.yview)
+      tabla.configure(yscrollcommand=scrollbar.set)
+
+      # Ubicar elementos en la ventana
+      tabla.pack(side="left", fill="both", expand=True, padx=(10, 0), pady=10)
+      scrollbar.pack(side="right", fill="y", padx=(0, 10), pady=10)
 
 
 
