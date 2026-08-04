@@ -62,6 +62,7 @@ class GestorCampo:
   def tomarSupLote(self, supLote):
     self.supLote = supLote
     print("Superficie del lote recibida: " + self.supLote)
+    self.pantalla.visualizarTiposSuelo()
 
   def tomarNumeroLote(self, numLot):
     self.numeroLote = numLot
@@ -232,8 +233,8 @@ class PantAdmCampo:
         )
         self.lbl_numero_lote.pack(pady=(10, 5))
 
-        frame_lote = tk.Frame(self.ventana_registro)
-        frame_lote.pack(pady=5)
+        self.frame_lote = tk.Frame(self.ventana_registro)
+        self.frame_lote.pack(pady=5)
 
         def validar_numero(text):
             return text.isdigit() or text == ""
@@ -241,7 +242,7 @@ class PantAdmCampo:
         vcmd = (self.ventana_registro.register(validar_numero), "%P")
 
         self.entry_numero_lote = tk.Entry(
-            frame_lote,
+            self.frame_lote,
             width=15,
             validate="key",
             validatecommand=vcmd
@@ -249,7 +250,7 @@ class PantAdmCampo:
         self.entry_numero_lote.pack(side="left", padx=(0, 10))
 
         self.btn_siguiente_lote = tk.Button(
-            frame_lote,
+            self.frame_lote,
             text="Siguiente",
             command=self.tomarNumeroLote
         )
@@ -265,9 +266,10 @@ class PantAdmCampo:
         
     def pedirSupLote(self):
       # Ocultamos los controles del nombre
-      self.lbl_nombre.destroy()
-      self.entry_nombre.destroy()
-      self.btn_confirmar.destroy()
+      self.entry_numero_lote.destroy()
+      self.lbl_numero_lote.destroy()
+      self.frame_lote.destroy()
+      self.btn_siguiente_lote.destroy()
 
       # Creamos los nuevos controles
 
@@ -285,10 +287,11 @@ class PantAdmCampo:
 
       self.btn_confirmar_superLote = tk.Button(
           self.ventana_registro,
-          text="Aceptar",
-          command=self.tomarSupeLote
+          text="Siguiente",
+          command=self.tomarSupLote
       )
       self.btn_confirmar_superLote.pack(pady=15)
+      
 
     def tomarSupLote(self):
       supLote = self.entry_supLote.get().strip()
