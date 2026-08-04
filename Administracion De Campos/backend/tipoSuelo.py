@@ -6,3 +6,9 @@ class TipoSuelo:
 
   def getNombre(self):
     return self.nombre
+
+  def mostrarDescripcion(self):
+    return str(self.descripcion)
+
+  def mostrarNumero(self):
+    return str(self.numero)

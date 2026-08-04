@@ -62,7 +62,7 @@ class GestorCampo:
   def tomarSupLote(self, supLote):
     self.supLote = supLote
     print("Superficie del lote recibida: " + self.supLote)
-    self.pantalla.visualizarTiposSuelo()
+    self.pantalla.visualizarTiposSuelo(self.tipoSuelo)
 
   def tomarNumeroLote(self, numLot):
     self.numeroLote = numLot
@@ -72,6 +72,12 @@ class GestorCampo:
     
 
 class PantAdmCampo:
+    def limpiar_pantalla_registro(self):
+      for widget in self.ventana_registro.winfo_children():
+        if widget is self.lbl_titulo:
+          continue
+        widget.destroy()
+
     def __init__(self):
         self.gestor = None
         # Inicializamos la ventana principal de Tkinter
@@ -123,8 +129,8 @@ class PantAdmCampo:
       self.ventana_registro.protocol("WM_DELETE_WINDOW", self.root.destroy)
 
       # D) Título interno dentro de la nueva ventana
-      lbl_titulo = tk.Label(self.ventana_registro, text="Formulario de Registro de Campo", font=("Arial", 12, "bold"))
-      lbl_titulo.pack(pady=15)
+      self.lbl_titulo = tk.Label(self.ventana_registro, text="Formulario de Registro de Campo", font=("Arial", 12, "bold"))
+      self.lbl_titulo.pack(pady=15)
       
     def pedirNombreCampo(self):
 
@@ -301,27 +307,33 @@ class PantAdmCampo:
           self.entry_supLote.config(state="disabled")
       if getattr(self, "btn_confirmar_superLote", None) is not None and self.btn_confirmar_superLote.winfo_exists():
           self.btn_confirmar_superLote.config(state="disabled")
+        
 
     def visualizarTiposSuelo(self, tiposSuelo):
-      columnas = ("descripcion", "nombre", "numero")
+      self.limpiar_pantalla_registro()
+
+      columnas = ("id", "nombre", "descripcion")
 
       # 2. Crear el widget Treeview
-      # show="headings" oculta la columna jerárquica por defecto que usa Tkinter
-      tabla = ttk.Treeview(self.ventana_registro, columns=columnas, show="headings")
+      tabla = ttk.Treeview(self.ventana_registro, columns=columnas, show="headings", height=5)
 
       # 3. Configurar los encabezados (texto que se muestra arriba)
-      tabla.heading("legajo", text="Legajo")
+      tabla.heading("id", text="ID")
       tabla.heading("nombre", text="Nombre")
-      tabla.heading("apellido", text="Apellido")
+      tabla.heading("descripcion", text="Descripción")
 
       # 4. Ajustar el ancho y alineación de las columnas
-      tabla.column("legajo", width=100, anchor="center")
-      tabla.column("nombre", width=180, anchor="w")
-      tabla.column("apellido", width=180, anchor="w")
-      
+      tabla.column("id", width=70, anchor="center")
+      tabla.column("nombre", width=140, anchor="w")
+      tabla.column("descripcion", width=220, anchor="w")
+
       # Insertar filas de datos
-      for suelo in tiposSuelo:
-          tabla.insert("", tk.END, values=suelo)
+      for tipo in tiposSuelo:
+          nombre = tipo.getNombre() if hasattr(tipo, "getNombre") else str(tipo)
+          descripcion = tipo.mostrarDescripcion() if hasattr(tipo, "mostrarDescripcion") else (tipo.getDescripcion() if hasattr(tipo, "getDescripcion") else "")
+          numero = tipo.mostrarNumero() if hasattr(tipo, "mostrarNumero") else (tipo.getId() if hasattr(tipo, "getId") else "")
+          fila = (numero, nombre, descripcion)
+          tabla.insert("", tk.END, values=fila)
 
       # 6. Agregar una barra de desplazamiento vertical (Scrollbar)
       scrollbar = ttk.Scrollbar(self.ventana_registro, orient="vertical", command=tabla.yview)
@@ -330,6 +342,31 @@ class PantAdmCampo:
       # Ubicar elementos en la ventana
       tabla.pack(side="left", fill="both", expand=True, padx=(10, 0), pady=10)
       scrollbar.pack(side="right", fill="y", padx=(0, 10), pady=10)
+
+      # Label y selección de tipo de suelo
+      label_seleccion = tk.Label(self.ventana_registro, text="Elija un tipo de suelo:")
+      label_seleccion.pack(pady=(10, 5))
+
+      valores_tipos = ["tipo de suelo a elegir"] + [tipo.getNombre() for tipo in tiposSuelo if hasattr(tipo, "getNombre")]
+      self.tipo_suelo_var = tk.StringVar(value=valores_tipos[0])
+
+      self.optionmenu_tipos = tk.OptionMenu(self.ventana_registro, self.tipo_suelo_var, *valores_tipos)
+      self.optionmenu_tipos.pack(pady=(0, 10))
+
+      self.btn_confirmar_tipo = tk.Button(
+          self.ventana_registro,
+          text="Confirmar",
+          command=self.confirmarTipoSuelo
+      )
+      self.btn_confirmar_tipo.pack(pady=(0, 15))
+
+    def confirmarTipoSuelo(self):
+      seleccion = self.tipo_suelo_var.get()
+      if seleccion == "tipo de suelo a elegir":
+          print("Debe seleccionar un tipo de suelo.")
+          return
+      print(f"[Pantalla] Tipo de suelo seleccionado: {seleccion}")
+      self.gestor.tomarTipoSuelo(seleccion)
 
 
 
